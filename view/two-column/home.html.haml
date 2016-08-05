@@ -1,2 +1,161 @@
-%p
-  This is home page.
+%h2
+	Stable libraries
+%table
+	-	libraries(:stable).each do |library|
+		%tr	
+			%td.name
+				= link_to_manifest library.name
+			%td.summary
+				= library.manifests.last.summary
+			%td.platforms
+				%link{:href => "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css", :rel => "stylesheet"}
+				- library.manifests.last.platforms.each do |platform|
+					- if platform == 'Windows'
+						%i.fa.fa-windows
+					- elsif platform == 'Linux'
+						%i.fa.fa-linux
+					- elsif platform == 'Android'
+						%i.fa.fa-android
+					- elsif platform == 'OS X'
+						%i.fa.fa-apple
+			%td.topics
+				- library.manifests.last.topics.each do |topic|
+					- if (topic != library.manifests.last.topics.last)
+						= topic + ", "
+					- else 
+						= topic                    
+			%td.licenses
+				- library.manifests.last.licenses.each do |license|
+					- if (license != library.manifests.last.licenses.last)
+						= license + ", "
+					- else 
+						= license  
+
+%br
+%h2
+	Developer releases
+%table
+	-	libraries(:beta).each do |library|
+		%tr	
+			%td.name
+				= link_to_manifest library.name
+			%td.summary
+				= library.manifests.last.summary
+			%td.platforms
+				%link{:href => "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css", :rel => "stylesheet"}
+				- library.manifests.last.platforms.each do |platform|
+					- if platform == 'Windows'
+						%i.fa.fa-windows
+					- elsif platform == 'Linux'
+						%i.fa.fa-linux
+					- elsif platform == 'Android'
+						%i.fa.fa-android
+					- elsif platform == 'OS X'
+						%i.fa.fa-apple
+			%td.topics
+				- library.manifests.last.topics.each do |topic|
+					- if (topic != library.manifests.last.topics.last)
+						= topic + ", "
+					- else 
+						= topic                    
+			%td.licenses
+				- library.manifests.last.licenses.each do |license|
+					- if (license != library.manifests.last.licenses.last)
+						= license + ", "
+					- else 
+						= license  
+
+	-	libraries(:alpha).each do |library|
+		%tr	
+			%td.name
+				= link_to_manifest library.name
+			%td.summary
+				= library.manifests.last.summary
+			%td.platforms
+				%link{:href => "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css", :rel => "stylesheet"}
+				- library.manifests.last.platforms.each do |platform|
+					- if platform == 'Windows'
+						%i.fa.fa-windows
+					- elsif platform == 'Linux'
+						%i.fa.fa-linux
+					- elsif platform == 'Android'
+						%i.fa.fa-android
+					- elsif platform == 'OS X'
+						%i.fa.fa-apple
+			%td.topics
+				- library.manifests.last.topics.each do |topic|
+					- if (topic != library.manifests.last.topics.last)
+						= topic + ", "
+					- else 
+						= topic                    
+			%td.licenses
+				- library.manifests.last.licenses.each do |license|
+					- if (license != library.manifests.last.licenses.last)
+						= license + ", "
+					- else 
+						= license  
+
+	-	libraries(:edge).each do |library|
+		%tr	
+			%td.name
+				= link_to_manifest library.name
+			%td.summary
+				= library.manifests.last.summary
+			%td.platforms
+				%link{:href => "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css", :rel => "stylesheet"}
+				- library.manifests.last.platforms.each do |platform|
+					- if platform == 'Windows'
+						%i.fa.fa-windows
+					- elsif platform == 'Linux'
+						%i.fa.fa-linux
+					- elsif platform == 'Android'
+						%i.fa.fa-android
+					- elsif platform == 'OS X'
+						%i.fa.fa-apple
+			%td.topics
+				- library.manifests.last.topics.each do |topic|
+					- if (topic != library.manifests.last.topics.last)
+						= topic + ", "
+					- else 
+						= topic                    
+			%td.licenses
+				- library.manifests.last.licenses.each do |license|
+					- if (license != library.manifests.last.licenses.last)
+						= license + ", "
+					- else 
+						= license  
+
+%br  
+%h2
+	Unreleased libraries
+%table
+	-	unreleased_libraries.each do |library|
+		%tr	
+			%td.name
+				= link_to_manifest library.name
+			%td.summary
+				= library.manifests.last.summary
+			%td.platforms
+				%link{:href => "http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css", :rel => "stylesheet"}
+				- library.manifests.last.platforms.each do |platform|
+					- if platform == 'Windows'
+						%i.fa.fa-windows
+					- elsif platform == 'Linux'
+						%i.fa.fa-linux
+					- elsif platform == 'Android'
+						%i.fa.fa-android
+					- elsif platform == 'OS X'
+						%i.fa.fa-apple
+			%td.topics
+				- library.manifests.last.topics.each do |topic|
+					- if (topic != library.manifests.last.topics.last)
+						= topic + ", "
+					- else 
+						= topic                    
+			%td.licenses
+				- library.manifests.last.licenses.each do |license|
+					- if (license != library.manifests.last.licenses.last)
+						= license + ", "
+					- else 
+						= license  
+%br  

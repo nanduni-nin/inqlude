@@ -123,6 +123,22 @@ class View
     "<a href=\"#{url}\">#{title}</a>"
   end
 
+  def topics
+    ['API', 'Artwork', 'Bindings', 'Communication', 'Data', 'Desktop', 'Development', 'Graphics', 'Logging', 'Mobile', 'Multimedia', 'Printing', 'QML', 'Scripting', 'Security', 'Text', 'Web', 'Widgets']
+  end
+
+  def platforms
+    ['Windows','OS X','Linux','Android','iOS']
+  end
+
+  def licenses
+    ['GPL','BSD']
+  end
+
+  # def link_to_topic name
+  #   "<a href=\"#{@root}libraries/#{name}.html\">#{name}</a>"
+  # end
+
   def list_attribute attribute
     attr = @manifest.send(attribute)
     return "" if !attr || attr.size == 0
@@ -211,6 +227,14 @@ class View
 
   def commercial_libraries
     @manifest_handler.commercial_libraries
+  end
+
+  def latest_libraries
+    @manifest_handler.latest_libraries
+  end
+
+  def get_no_of_libraries topic
+    @manifest_handler.get_no_of_libraries topic
   end
 
   def group_title

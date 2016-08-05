@@ -123,4 +123,26 @@ class ManifestHandler
     end
     JSON.pretty_generate(all)
   end
+
+  def latest_libraries
+    return @libraries.select do |library|
+      manifest = library.latest_manifest
+      if manifest.is_a? ManifestRelease
+        manifest.release_date.include? "2016-04"
+      end    
+    end
+  end
+
+  def get_no_of_libraries topic
+    count =0;
+    @libraries.each do |l|
+      topics = l.latest_manifest.topics
+      if topics!=nil
+        if l.latest_manifest.topics.include? topic
+          count = count + 1          
+        end
+      end
+    end
+    count    
+  end
 end
