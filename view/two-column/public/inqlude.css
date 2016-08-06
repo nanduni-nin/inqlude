@@ -62,6 +62,7 @@ h1 .subtitle {
   -webkit-box-shadow: 0px 3px 10px rgba(50, 50, 50, 0.5);
   -moz-box-shadow:    0px 3px 10px rgba(50, 50, 50, 0.5);
   box-shadow:         0px 3px 10px rgba(50, 50, 50, 0.5);
+  background: linear-gradient(-90deg, #80C342, #eee);
 }
 
 .logo {
@@ -83,7 +84,7 @@ h1 .subtitle {
 }
 
 .search {
-  width: 250px;
+  width: 400px;  
 }
 
 .menu_items {
@@ -136,6 +137,10 @@ td {
   font-size: 80%;
 }
 
+.lib-content {
+  padding-left: 20px;
+}
+
 .legal {
   margin: 12px;
   text-align: center;
@@ -175,17 +180,18 @@ td {
 
 .intro{
   width: 100%;
-  background-color: #eee;
-  float: left;
+  background-color: #cbe7b1;
+  padding-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
+  padding-bottom: 5px;
   margin-bottom: 5px;
   text-align: justify;  
 }
 
 .latest{
   width: 100%;
-  background-color: #eee;
+  background-color: #cbe7b1;
   float: left;
   padding-left: 10px;
   padding-right: 10px; 
@@ -194,7 +200,7 @@ td {
 
 .filters{
   width: 100%;
-  background-color: #eee;
+  background-color: #cbe7b1;
   float: left;
   padding-left: 10px;
   padding-right: 10px;
@@ -223,7 +229,7 @@ td {
 }
 
 .box{  
-  background-color: #a9a9a9;
+  background-color: #80C342;
   width: 104.2%;
   margin-left: -10px;
   padding-left: 10px;
@@ -278,3 +284,24 @@ mini{
   font-size: 10px;
 }
 
+/*.title_bar{
+  float: left;
+  width: 100%;
+  padding-right: 10px;
+  background-color: yellow;
+}*/
+
+.labels{
+  padding: 4px;
+  /*background-color: yellowgreen;*/
+  background-color: #80C342;
+  margin-right: 10px;
+  float: right;
+  font-size: 13px;
+}
+
+.inner_content{
+  padding-right: 50px;
+  padding-left: 50px;
+  width: 90%;
+}
