@@ -99,12 +99,20 @@ h3, h4, h6 {
 .col-sm-12.latest-releases {
   background-color: #eee;
   margin-bottom: 5px;
+  padding: 0px;
+}
+
+.col-sm-12.latest-releases-content{
   padding-left: 30px;
 }
 
 .col-sm-12.filters {
   background-color: #eee;
   margin-bottom: 5px;
+  padding: 0px;
+}
+
+.col-sm-12.filters-content{
   padding: 5px;
 }
 
@@ -217,8 +225,7 @@ home {
   font-size: 80%;
 }
 
-.legal {
-  margin: 12px;
+.col-sm-12.legal {
   text-align: center;
   font-size: 70%;
 }

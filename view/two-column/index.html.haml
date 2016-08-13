@@ -1,7 +1,7 @@
 %h4
   Stable libraries
 
-%table.table-hover
+%table.table-hover.main
   - libraries(:stable).each do |library|
     %tr 
       %td.name
@@ -22,11 +22,12 @@
         - if (library.manifests.last.platforms.include? 'iOS') || (library.manifests.last.platforms.include? 'OS X') 
           %i.fa.fa-apple
       %td.topics
-        - library.manifests.last.topics.each do |topic|
-          - if (topic != library.manifests.last.topics.last)
-            = topic + ", "
-          - else 
-            = topic                    
+        - if library.manifests.last.topics
+          - library.manifests.last.topics.each do |topic|
+            - if (topic != library.manifests.last.topics.last)
+              = topic + ", "
+            - else 
+              = topic                    
       %td.licenses
         - library.manifests.last.licenses.each do |license|
           - if (license != library.manifests.last.licenses.last)
@@ -38,7 +39,7 @@
 %h4
   Developer releases
 
-%table.table-hover
+%table.table-hover.main
   - libraries(:beta).each do |library|
     %tr 
       %td.name
@@ -59,11 +60,12 @@
         - if (library.manifests.last.platforms.include? 'iOS') || (library.manifests.last.platforms.include? 'OS X') 
           %i.fa.fa-apple         
       %td.topics
-        - library.manifests.last.topics.each do |topic|
-          - if (topic != library.manifests.last.topics.last)
-            = topic + ", "
-          - else 
-            = topic                    
+        - if library.manifests.last.topics
+          - library.manifests.last.topics.each do |topic|
+            - if (topic != library.manifests.last.topics.last)
+              = topic + ", "
+            - else 
+              = topic                    
       %td.licenses
         - library.manifests.last.licenses.each do |license|
           - if (license != library.manifests.last.licenses.last)
@@ -91,11 +93,12 @@
         - if (library.manifests.last.platforms.include? 'iOS') || (library.manifests.last.platforms.include? 'OS X') 
           %i.fa.fa-apple         
       %td.topics
-        - library.manifests.last.topics.each do |topic|
-          - if (topic != library.manifests.last.topics.last)
-            = topic + ", "
-          - else 
-            = topic                    
+        - if library.manifests.last.topics
+          - library.manifests.last.topics.each do |topic|
+            - if (topic != library.manifests.last.topics.last)
+              = topic + ", "
+            - else 
+              = topic                    
       %td.licenses
         - library.manifests.last.licenses.each do |license|
           - if (license != library.manifests.last.licenses.last)
@@ -123,11 +126,12 @@
         - if (library.manifests.last.platforms.include? 'iOS') || (library.manifests.last.platforms.include? 'OS X') 
           %i.fa.fa-apple         
       %td.topics
-        - library.manifests.last.topics.each do |topic|
-          - if (topic != library.manifests.last.topics.last)
-            = topic + ", "
-          - else 
-            = topic                    
+        - if library.manifests.last.topics
+          - library.manifests.last.topics.each do |topic|
+            - if (topic != library.manifests.last.topics.last)
+              = topic + ", "
+            - else 
+              = topic                    
       %td.licenses
         - library.manifests.last.licenses.each do |license|
           - if (license != library.manifests.last.licenses.last)
@@ -139,7 +143,7 @@
 %h4
   Unreleased libraries
 
-%table.table-hover
+%table.table-hover.main
   - unreleased_libraries.each do |library|
     %tr 
       %td.name
@@ -160,11 +164,12 @@
         - if (library.manifests.last.platforms.include? 'iOS') || (library.manifests.last.platforms.include? 'OS X') 
           %i.fa.fa-apple
       %td.topics
-        - library.manifests.last.topics.each do |topic|
-          - if (topic != library.manifests.last.topics.last)
-            = topic + ", "
-          - else 
-            = topic                    
+        - if library.manifests.last.topics
+          - library.manifests.last.topics.each do |topic|
+            - if (topic != library.manifests.last.topics.last)
+              = topic + ", "
+            - else 
+              = topic                    
       %td.licenses
         - library.manifests.last.licenses.each do |license|
           - if (license != library.manifests.last.licenses.last)

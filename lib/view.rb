@@ -277,6 +277,14 @@ class View
     ['Apache','BSD','Commercial','GPL','LGPL','MIT','Qwt']
   end
 
+  def click_topic topic
+    return 1;
+  end
+
+  def buhu
+    render :layout => false
+  end
+
   private
   
   def assert_dir name

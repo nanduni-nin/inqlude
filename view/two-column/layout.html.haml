@@ -46,60 +46,63 @@
           %li
             = link_to "How to get libraries", "get"
           %li
-            = link_to "How to contribute", "contribute"          
-          
-      .col-sm-12.title 
-        Latest releases   
-      .col-sm-12.latest-releases 
-        %table
-          %tr
-            %td
-              - latest_libraries.each do |library|
-                - if library.latest_manifest.display_name
-                  = link_to_library(library.latest_manifest.name, library.latest_manifest.display_name)
-                - else
-                  = link_to_library(library.latest_manifest.name, library.latest_manifest.name)
-                %date
-                  = '(' + library.latest_manifest.release_date + ')'
-                %br                
+            = link_to "How to contribute", "contribute"            
+            
+      .col-sm-12.latest-releases
+        .col-sm-12.title
+          Latest releases 
+        .col-sm-12.latest-releases-content
+          %table
+            %tr
+              %td
+                - latest_libraries.each do |library|
+                  - if library.latest_manifest.display_name
+                    = link_to_library(library.latest_manifest.name, library.latest_manifest.display_name)
+                  - else
+                    = link_to_library(library.latest_manifest.name, library.latest_manifest.name)
+                  %date
+                    = '(' + library.latest_manifest.release_date + ')'
+                  %br                
         
-      .col-sm-12.title
-        Filters
       .col-sm-12.filters
-        .col-sm-7.filter-topics
-          %h6
-            Topics
-          - topics.each do |topic|
-            %input{:type=>"checkbox", :name=>"#{topic}"}
-            = topic            
-            %br     
+        .col-sm-12.title
+          Filters 
+        .col-sm-12.filters-content
+          .col-sm-7.filter-topics
+            %h6
+              Topics
+            - topics.each do |topic|
+              %input{:type=>"checkbox", :id=>"#{topic}", :onclick=>"bunds(this)"}
+              / , :onclick => "= click_topic #{topic}"
+              = topic            
+              %br     
 
-        .col-sm-5.filter-platforms
-          %h6
-            Platforms
-          - platforms.each do |platform|
-            %input{:type=>"checkbox", :name=>"#{platform}"}
-            = platform
-            %br     
+          .col-sm-5.filter-platforms
+            %h6
+              Platforms
+            - platforms.each do |platform|
+              %input{:type=>"checkbox", :name=>"#{platform}"}
+              = platform
+              %br     
         
-        .col-sm-5.filter-licenses
-          %h6
-            Licenses
-          - licenses.each do |license|
-            %input{:type=>"checkbox", :name=>"#{license}"}
-            = license
-            %br     
+          .col-sm-5.filter-licenses
+            %h6
+              Licenses
+            - licenses.each do |license|
+              %input{:type=>"checkbox", :name=>"#{license}"}
+              = license
+              %br     
 
     .col-sm-9.main-pane 
       = yank
 
       %br{ :clear => "all" }
 
-      .legal
-        Inqlude is a
-        = link_to "KDE project", "http://kde.org"
-        = "|"
-        = link_to "Legal", "http://www.kde.org/community/whatiskde/impressum.php"
+  .col-sm-12.legal
+    Inqlude is a
+    = link_to "KDE project", "http://kde.org"
+    = "|"
+    = link_to "Legal", "http://www.kde.org/community/whatiskde/impressum.php"
 
   - if enable_search
     :javascript
@@ -113,3 +116,29 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(gcse, s);
       })();
+
+/ :javascript
+:javascript
+  var elem = $('.topics');
+  for(i=0;i<elem.length;i++){
+     var el = elem[i]
+     var txt = el.textContent.split(',');
+     for(j=0;j<txt.length;j++){
+        (el.parentNode).classList.add(txt[j].trim());
+     }
+  }
+  function bunds(check) {
+    var id = check.id;
+    var value = check.checked;
+    if(value){
+      $('.main tr:not(.hidden):not(.'+id+')').addClass('hidden');
+    }else{
+      var selected = $('.filter-topics input:checked');
+      var selector = "tr";
+      for(var i=selected.length-1; i>=0 ; i--){
+        selector += '.'+ selected[i].id;
+      }
+      console.log(selector);
+      $(selector).removeClass('hidden');
+    }
+  }
