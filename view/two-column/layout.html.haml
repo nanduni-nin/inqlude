@@ -72,7 +72,7 @@
             %h6
               Topics
             - topics.each do |topic|
-              %input{:type=>"checkbox", :id=>"#{topic}", :onclick=>"bunds(this)"}
+              %input{:type=>"checkbox", :id=>"#{topic}", :onclick=>"filter(this)"}
               / , :onclick => "= click_topic #{topic}"
               = topic            
               %br     
@@ -81,7 +81,7 @@
             %h6
               Platforms
             - platforms.each do |platform|
-              %input{:type=>"checkbox", :name=>"#{platform}"}
+              %input{:type=>"checkbox", :id=>"#{platform}", :onclick=>"filter(this)"}
               = platform
               %br     
         
@@ -89,7 +89,7 @@
             %h6
               Licenses
             - licenses.each do |license|
-              %input{:type=>"checkbox", :name=>"#{license}"}
+              %input{:type=>"checkbox", :id=>"#{license}", :onclick=>"filter(this)"}
               = license
               %br     
 
@@ -117,28 +117,72 @@
         s.parentNode.insertBefore(gcse, s);
       })();
 
-/ :javascript
 :javascript
+  var licenseList = ['Apache','BSD','Commercial','GPL','LGPL','MIT','Qwt'];
+  var platforms = ['Android','iOS','Linux','OS_x','Windows'];
   var elem = $('.topics');
   for(i=0;i<elem.length;i++){
-     var el = elem[i]
+     var el = elem[i];
      var txt = el.textContent.split(',');
      for(j=0;j<txt.length;j++){
-        (el.parentNode).classList.add(txt[j].trim());
+        if(txt[j].trim()){
+          (el.parentNode).classList.add(txt[j].trim());
+        }
      }
   }
-  function bunds(check) {
+  var elem = $('.platforms');
+  for(i=0;i<elem.length;i++){
+    var el = elem[i];
+    var html = el.innerHTML;
+    for(var k=platforms.length-1; k>=0; k--){
+      if(html.indexOf(platforms[k])>=0){
+        (el.parentNode).classList.add(platforms[k]);
+      }
+    }
+  }
+  var elem = $('.licenses');
+  for(i=0;i<elem.length;i++){
+     var el = elem[i];
+     var txt = el.textContent.split(',');
+     for(j=0;j<txt.length;j++){
+        if(txt[j].trim()){
+          var license;
+          for(var k=licenseList.length-1; k>=0; k--){
+            if(txt[j].trim().indexOf(licenseList[k])>=0){
+               license = licenseList[k];
+               break;
+            }
+          }
+          if(license){
+            (el.parentNode).classList.add(license);
+          }
+        }
+     }
+  }
+  function filter(check) {
     var id = check.id;
+    if(id==='OS x'){
+       id = 'OS_x';
+    }
     var value = check.checked;
     if(value){
       $('.main tr:not(.hidden):not(.'+id+')').addClass('hidden');
     }else{
-      var selected = $('.filter-topics input:checked');
+      var selected = $('.filters-content input:checked');
       var selector = "tr";
       for(var i=selected.length-1; i>=0 ; i--){
         selector += '.'+ selected[i].id;
       }
-      console.log(selector);
       $(selector).removeClass('hidden');
     }
   }
+
+  var selected_d = $('.filters-content input:checked');
+  var selector_d = ".main tr";
+  for(var i=selected_d.length-1; i>=0 ; i--){
+    selector_d += ':not(.'+ selected_d[i].id+')';
+  }
+  if(selector_d !== '.main tr'){
+      $(selector_d).addClass('hidden');
+  }
+
