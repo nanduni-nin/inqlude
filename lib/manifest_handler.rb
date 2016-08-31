@@ -53,7 +53,28 @@ class ManifestHandler
       manifest.licenses.include? "Commercial"
     end
   end
-  
+
+  def latest_libraries
+    releases = Array.new
+    is_kde_added = false
+
+    libraries.select do |library|
+      if library.latest_manifest.has_version? && library.latest_manifest.group != "kde-frameworks"
+        releases.push library
+      elsif library.latest_manifest.has_version? && library.latest_manifest.group == "kde-frameworks"
+        if !is_kde_added
+          is_kde_added = true
+          releases.push library
+        end
+      end
+    end
+
+    releases.sort! {|a,b| a.latest_manifest.release_date <=> b.latest_manifest.release_date}
+    releases.reverse!
+
+    return releases[0 .. 4]
+  end
+
   def group name
     return @libraries.select do |l|
       manifest = l.latest_manifest
@@ -86,6 +107,19 @@ class ManifestHandler
         manifest.topics.include? name
       end
     end
+  end
+
+  def no_of_libraries topic
+    count =0;
+    @libraries.each do |l|
+      topics = l.latest_manifest.topics
+      if topics
+        if l.latest_manifest.topics.include? topic
+          count = count + 1
+        end
+      end
+    end
+    count
   end
 
   def read_remote
